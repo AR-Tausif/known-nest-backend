@@ -15,6 +15,7 @@ const createUserSchema = new Schema<TUser>({
   password: {
     type: String,
     required: true,
+    select: 0,
   },
   role: {
     type: String,

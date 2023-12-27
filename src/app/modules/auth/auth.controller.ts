@@ -20,7 +20,25 @@ const registerUserWithPass: RequestHandler = async (
     next(error);
   }
 };
+const loginUserWithPass: RequestHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const result = await AuthServices.loginUserWithPass(req.body);
+    sendResponds(res, {
+      success: true,
+      statusCode: httpStatus.OK,
+      message: 'User logged in succesfully!',
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 export const AuthControllers = {
   registerUserWithPass,
+  loginUserWithPass,
 };

@@ -15,6 +15,11 @@ const reviewSchema = new Schema<TReview>({
     type: String,
     required: [true, 'review details is needed if you give rating'],
   },
+  createdBy: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true,
+  },
 });
 
 const ReviewModel = model<TReview>('Review', reviewSchema);

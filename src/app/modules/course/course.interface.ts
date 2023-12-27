@@ -26,4 +26,5 @@ export interface TCourse {
     level: string; // e.g., Beginner, Intermediate, Advanced
     description: string;
   };
+  createdBy: Types.ObjectId;
 }

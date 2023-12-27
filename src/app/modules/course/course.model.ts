@@ -27,6 +27,7 @@ const courseSchema = new Schema<TCourse>({
   provider: { type: String, required: true },
   durationInWeeks: { type: Number },
   details: { type: detailsSchema, required: true },
+  createdBy: { type: Schema.Types.ObjectId, ref: 'User', required: true },
 });
 
 const CourseModel = mongoose.model<TCourse>('Course', courseSchema);

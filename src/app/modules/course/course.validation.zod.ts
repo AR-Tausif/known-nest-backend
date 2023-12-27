@@ -24,6 +24,7 @@ const createCourseSchema = z.object({
     provider: z.string(),
     durationInWeeks: z.number().optional(),
     details: detailsSchema,
+    createdBy: z.string(),
   }),
 });
 

@@ -7,6 +7,9 @@ const categorySchema = new Schema<TCategory>({
     required: [true, 'name field is required'],
     unique: true,
   },
+  createdBy: {
+    type: String,
+  },
 });
 
 const CategoryModel = model<TCategory>('Category', categorySchema);

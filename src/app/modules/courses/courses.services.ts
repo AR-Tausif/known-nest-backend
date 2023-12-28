@@ -65,7 +65,7 @@ const getAllCourseService = async (query: Record<string, unknown>) => {
     skip = (page - 1) * limit;
   }
   const paginateQuery = sortedQuery.skip(skip);
-  const limitQuery = await paginateQuery.limit(limit);
+  const limitQuery = await paginateQuery.limit(limit).populate('createdBy');
 
   return limitQuery;
 };

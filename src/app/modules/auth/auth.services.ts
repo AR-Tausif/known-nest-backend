@@ -1,7 +1,7 @@
 import config from '../../config';
 import { TUser } from '../user/user.interface';
 import User from '../user/user.model';
-import jwt from 'jsonwebtoken';
+import jwt, { JwtPayload } from 'jsonwebtoken';
 const registerUserWithPass = async (payload: TUser) => {
   console.log(payload);
   const result = await User.create(payload);
@@ -28,15 +28,30 @@ const loginUserWithPass = async (payload: TUser) => {
   return { user, accessToken };
 };
 
-const changePasswordUserIntoDB = async (payload: {
-  email: string;
-  password: string;
-}) => {
-  const isUserExist = User.findOne({ payload });
-  if (isUserExist) {
+const changePasswordUserIntoDB = async (
+  payload: {
+    email: string;
+    old_password: string;
+    new_password: string;
+  },
+  decoded: JwtPayload,
+) => {
+  const { email } = decoded;
+  const updateData = { password: payload.new_password };
+
+  const isUserExist = await User.findOne({ email }).select('+password');
+
+  if (!isUserExist) {
     throw new Error('User creadential is not valid. Try again later!');
   }
-  const result = await User.findOneAndUpdate({ payload });
+
+  if (!(isUserExist.password === payload.old_password)) {
+    throw new Error('Password not matched. Try again later!');
+  }
+  const result = await User.findOneAndUpdate(
+    { _id: isUserExist._id },
+    updateData,
+  );
   return result;
 };
 

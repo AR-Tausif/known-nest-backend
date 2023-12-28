@@ -1,8 +1,16 @@
 import { RequestHandler } from 'express';
 import { CategoryServices } from './category.services';
-
+import jwt from 'jsonwebtoken';
+import config from '../../config';
 const createCategories: RequestHandler = async (req, res) => {
   try {
+    const accessToken = req.headers.authorization;
+
+    const decoded = jwt.verify(
+      accessToken as string,
+      config.jwt_secret as string,
+    );
+    req.body.createdBy = decoded._id;
     const result = await CategoryServices.createCategoriesService(req.body);
 
     res.status(200).json({

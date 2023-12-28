@@ -5,7 +5,7 @@ import { CourseZodValidationSchema } from '../course/course.validation.zod';
 import checkAuth from '../../middlewares/checkAuth';
 
 const router = Router();
-router.get('/', checkAuth(), CoursesControllers.getAllCourse);
+router.get('/', CoursesControllers.getAllCourse);
 router.put(
   '/:courseId',
   zodValidation(CourseZodValidationSchema.updateCourseSchema),

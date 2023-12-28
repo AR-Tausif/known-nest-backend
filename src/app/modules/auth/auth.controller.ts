@@ -2,6 +2,8 @@ import { NextFunction, Request, RequestHandler, Response } from 'express';
 import { AuthServices } from './auth.services';
 import sendResponds from '../../utils/sendResponds';
 import httpStatus from 'http-status';
+import jwt, { JwtPayload } from 'jsonwebtoken';
+import config from '../../config';
 
 const registerUserWithPass: RequestHandler = async (
   req: Request,
@@ -43,7 +45,17 @@ const changePasswordUserIntoDB: RequestHandler = async (
   next: NextFunction,
 ) => {
   try {
-    const result = await AuthServices.changePasswordUserIntoDB(req.body);
+    const accessToken = req.headers.authorization;
+
+    const decoded = jwt.verify(
+      accessToken as string,
+      config.jwt_secret as string,
+    );
+
+    const result = await AuthServices.changePasswordUserIntoDB(
+      req.body,
+      decoded as JwtPayload,
+    );
     sendResponds(res, {
       success: true,
       statusCode: httpStatus.OK,

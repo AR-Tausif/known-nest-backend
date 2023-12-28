@@ -37,8 +37,26 @@ const loginUserWithPass: RequestHandler = async (
     next(error);
   }
 };
+const changePasswordUserIntoDB: RequestHandler = async (
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) => {
+  try {
+    const result = await AuthServices.changePasswordUserIntoDB(req.body);
+    sendResponds(res, {
+      success: true,
+      statusCode: httpStatus.OK,
+      message: 'Password changed successfully!',
+      data: result,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 export const AuthControllers = {
   registerUserWithPass,
   loginUserWithPass,
+  changePasswordUserIntoDB,
 };

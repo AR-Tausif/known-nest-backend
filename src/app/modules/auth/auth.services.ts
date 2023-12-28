@@ -28,7 +28,20 @@ const loginUserWithPass = async (payload: TUser) => {
   return { user, accessToken };
 };
 
+const changePasswordUserIntoDB = async (payload: {
+  email: string;
+  password: string;
+}) => {
+  const isUserExist = User.findOne({ payload });
+  if (isUserExist) {
+    throw new Error('User creadential is not valid. Try again later!');
+  }
+  const result = await User.findOneAndUpdate({ payload });
+  return result;
+};
+
 export const AuthServices = {
   registerUserWithPass,
   loginUserWithPass,
+  changePasswordUserIntoDB,
 };

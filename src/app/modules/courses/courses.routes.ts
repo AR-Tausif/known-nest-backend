@@ -9,6 +9,7 @@ router.get('/', CoursesControllers.getAllCourse);
 router.put(
   '/:courseId',
   zodValidation(CourseZodValidationSchema.updateCourseSchema),
+  checkAuth('admin'),
   CoursesControllers.updateCourseDataIntoDB,
 );
 router.get('/:courseId/reviews', CoursesControllers.getCourseReviewsById);

@@ -7,7 +7,6 @@ import User from '../modules/user/user.model';
 const checkAuth = (...authRoles: Array<'user' | 'admin'>) =>
   CatchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const accessToken = req.headers.authorization;
-    console.log(accessToken);
 
     const decoded = jwt.verify(
       accessToken as string,
@@ -22,7 +21,9 @@ const checkAuth = (...authRoles: Array<'user' | 'admin'>) =>
     }
 
     if (!authRoles.includes(user?.role)) {
-      throw new Error('You are not authentic user');
+      throw new Error(
+        'You do not have the necessary permissions to access this resource.',
+      );
     }
     next();
   });

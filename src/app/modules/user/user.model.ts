@@ -29,8 +29,8 @@ const createUserSchema = new Schema<TUser>(
     timestamps: true,
   },
 );
-//TODO: Need to update user collection name on 'Participate' name__
-const User = mongoose.model('Participate', createUserSchema);
+
+const User = mongoose.model('User', createUserSchema);
 
 // createUserSchema.pre('save', async function (next) {
 //   // eslint-disable-next-line @typescript-eslint/no-this-alias

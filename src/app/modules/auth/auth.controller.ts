@@ -4,7 +4,7 @@ import sendResponds from '../../utils/sendResponds';
 import httpStatus from 'http-status';
 import jwt, { JwtPayload } from 'jsonwebtoken';
 import config from '../../config';
-
+// TODO: CatchAsync Add
 const registerUserWithPass: RequestHandler = async (
   req: Request,
   res: Response,

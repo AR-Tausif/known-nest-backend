@@ -10,7 +10,7 @@ const categorySchema = new Schema<TCategory>(
     },
     createdBy: {
       type: Schema.Types.ObjectId,
-      ref: 'Participate',
+      ref: 'User',
     },
   },
   {

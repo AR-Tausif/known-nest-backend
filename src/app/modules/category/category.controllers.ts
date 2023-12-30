@@ -2,6 +2,8 @@ import { RequestHandler } from 'express';
 import { CategoryServices } from './category.services';
 import jwt from 'jsonwebtoken';
 import config from '../../config';
+import sendResponds from '../../utils/sendResponds';
+import httpStatus from 'http-status';
 const createCategories: RequestHandler = async (req, res) => {
   try {
     const accessToken = req.headers.authorization;
@@ -32,16 +34,16 @@ const getAllCategoriesController: RequestHandler = async (req, res) => {
   try {
     const result = await CategoryServices.getAllCategoriesService();
 
-    res.status(200).json({
+    sendResponds(res, {
       success: true,
-      message: 'Categories are created successfully',
-      statusCode: 200,
+      statusCode: httpStatus.OK,
+      message: 'categories retrieved successfully',
       data: result,
     });
   } catch (error) {
     res.status(404).json({
       success: false,
-      message: 'Some get issues on create categories',
+      message: 'Some get issues on getting categories',
       errorMessage: error,
     });
   }

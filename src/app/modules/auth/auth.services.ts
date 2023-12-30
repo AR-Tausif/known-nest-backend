@@ -24,9 +24,14 @@ const registerUserWithPass = async (payload: TUser) => {
   };
   return resultData;
 };
-const loginUserWithPass = async (payload: TUser) => {
+const loginUserWithPass = async (payload: {
+  username: string;
+  password: string;
+}) => {
   const myPlaintextPassword = payload.password;
-  const user = await User.findOne({ email: payload.email }).select('+password');
+  const user = await User.findOne({ username: payload.username }).select(
+    '+password',
+  );
   if (!user) {
     throw new Error('You entered wrong informations!');
   }

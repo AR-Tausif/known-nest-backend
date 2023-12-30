@@ -5,7 +5,7 @@ const createCategoriesService = async (payload: TCategory) => {
   return await CategoryModel.create(payload);
 };
 const getAllCategoriesService = async () => {
-  return await CategoryModel.find({}).populate('createdBy');
+  return await CategoryModel.find().populate('createdBy');
 };
 
 export const CategoryServices = {

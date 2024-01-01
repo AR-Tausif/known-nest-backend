@@ -1,6 +1,4 @@
-# L2-assignment-03
-
-## Prerequisites
+# CRUD PROJECT
 
 MongoDB CRUD Backend Project with Mongoose
 

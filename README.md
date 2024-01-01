@@ -8,7 +8,7 @@ If you want to clone this repository and try to setup this project locally, ensu
 - TypeScript
 - MongoDB installed
 
-## 🔗 Live deployment link
+## 🔗 Live deployment link(Back-end)
 
 [![live link](https://img.shields.io/badge/Live_Link-0A66C2?style=for-the-badge&logo=ko-fi&logoColor=white)](https://l2b2a4-course-review-ar-tausif.vercel.app)
 
@@ -17,8 +17,8 @@ If you want to clone this repository and try to setup this project locally, ensu
 1. **Clone the repository:**
 
    ```bash
-   https://github.com/Porgramming-Hero-web-course/l2b2a4-course-review-with-auth-AR-Tausif
-   cd l2b2a4-course-review-with-auth-AR-Tausif
+   https://github.com/AR-Tausif/known-nest-backend.git
+   cd known-nest-backend
    ```
 
 2. **Install dependencies:**

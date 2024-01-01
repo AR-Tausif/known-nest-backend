@@ -8,6 +8,8 @@ import config from '../../config';
 const createCourse: RequestHandler = async (req, res, next) => {
   try {
     const { startDate, endDate } = req.body;
+    const isoStartDate = new Date(`${startDate}T00:00:00.000Z`);
+    const isoEndDate = new Date(`${endDate}T23:59:59.999Z`);
     const accessToken = req.headers.authorization;
 
     const decoded = jwt.verify(
@@ -16,6 +18,8 @@ const createCourse: RequestHandler = async (req, res, next) => {
     );
     const durationInWeeks = getDurationInWeeks(startDate, endDate);
     req.body.durationInWeeks = durationInWeeks;
+    req.body.startDate = isoStartDate;
+    req.body.endDate = isoEndDate;
     req.body.createdBy = decoded._id as string;
     const result = await CourseServices.createCourseService(req.body);
     res.status(200).json({

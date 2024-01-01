@@ -2,19 +2,21 @@ import { RequestHandler } from 'express';
 import { CoursesServices } from './courses.services';
 import sendResponds from '../../utils/sendResponds';
 import httpStatus from 'http-status';
-import CourseModel from '../course/course.model';
+
 import getDurationInWeeks from '../../constants/getDurationInWeek';
+import { TQueryObj } from './courses.interface';
 
 const getAllCourse: RequestHandler = async (req, res, next) => {
   try {
     const query = req.query;
-    const data = await CoursesServices.getAllCourseService(query);
-    const total = await CourseModel.countDocuments();
+    const data = await CoursesServices.getAllCourseService(query as TQueryObj);
+
+    const totalDoc = data.length;
 
     const meta = {
       page: query.page,
       limit: query.limit,
-      total,
+      total: totalDoc,
     };
 
     res.status(200).json({

@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import config from '../config';
 import User from '../modules/user/user.model';
 
-const checkAuth = (...authRoles: Array<'user' | 'admin'>) =>
+const checkAuth = (...authRoles) =>
   CatchAsync(async (req: Request, res: Response, next: NextFunction) => {
     const accessToken = req.headers.authorization;
 
@@ -17,7 +17,7 @@ const checkAuth = (...authRoles: Array<'user' | 'admin'>) =>
     const user = await User.findOne({ email });
 
     if (!user) {
-      throw new Error('You are not authorize user');
+      throw new Error('Unauthorized Access');
     }
 
     if (!authRoles.includes(user?.role)) {

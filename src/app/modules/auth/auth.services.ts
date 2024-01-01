@@ -112,7 +112,15 @@ const changePasswordUserIntoDB = async (
   // Save the updated user with the new password and password history
   user.password = passwordHash;
 
-  return await user.save();
+  const userDone = await user.save();
+  return {
+    _id: userDone._id,
+    username: userDone.username,
+    email: userDone.email,
+    role: userDone.role,
+    createdAt: userDone.createdAt,
+    updatedAt: userDone.updatedAt,
+  };
 };
 
 export const AuthServices = {

@@ -24,3 +24,13 @@ export interface TUpdateCourse {
   durationInWeeks?: number;
   details?: UpdateCourseDetails;
 }
+
+export type TQueryObj = {
+  [key: string]: unknown;
+  page: string;
+  searchTerm: string;
+  limit: string;
+  sortBy: string;
+  sortOrder: string;
+  fields: string;
+};

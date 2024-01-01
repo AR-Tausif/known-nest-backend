@@ -17,8 +17,8 @@ export interface TCourse {
   categoryId: Types.ObjectId;
   price: number;
   tags: Tag[];
-  startDate: string;
-  endDate: string;
+  startDate: Date;
+  endDate: Date;
   language: string;
   provider: string;
   durationInWeeks: number;

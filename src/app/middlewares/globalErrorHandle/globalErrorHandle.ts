@@ -18,6 +18,15 @@ const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
     message = 'Invalid ID';
   } else if (err.code === 11000) {
     message = 'Duplicate field you are entered';
+  } else if (err.name === 'JsonWebTokenError') {
+    return res.status(400).json({
+      success: false,
+      message: 'Unauthorized Access',
+      errorMessage:
+        'You do not have the necessary permissions to access this resource.',
+      errorDetails: null,
+      stack: null,
+    });
   }
 
   return res.status(statusCode).json({

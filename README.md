@@ -70,6 +70,6 @@ Finally user and admin can change their password. So check it out online with po
 
 https://documenter.getpostman.com/view/28459031/2s9YsDkEgP
 
-I you try Examples then you'll get truly response from backend and will get data from database with hit these url.
+If you try Examples then you'll get truly response from backend and will get data from database with hit these url.
 
 Thank you so much for visit...
